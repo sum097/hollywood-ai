@@ -5,18 +5,12 @@ import { openModal } from "@/redux/slices/modalSlice";
 import { clearUser } from "@/redux/slices/userSlice";
 import { RootState } from "@/redux/store";
 import { signOut } from "firebase/auth";
-import { usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
-  AiOutlineHeart,
-  AiOutlineHome,
-  AiOutlineLogin,
-  AiOutlineLogout,
-  AiOutlineQuestionCircle,
   AiOutlineSearch,
-  AiOutlineSetting,
 } from "react-icons/ai";
-import { HiOutlineTrendingUp } from "react-icons/hi";
+import { BsGrid, BsBookmark, BsQuestionCircle } from "react-icons/bs";
+import { FiSettings, FiTrendingUp, FiLogOut, FiLogIn } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Sidebar() {
@@ -28,7 +22,6 @@ export default function Sidebar() {
   async function handleLogout() {
     await signOut(auth);
     dispatch(clearUser());
-    router.push("/");
   }
 
   function handleLogin() {
@@ -36,66 +29,80 @@ export default function Sidebar() {
   }
 
   const linkBase =
-    "flex items-center gap-3.5 px-6 py-3.5 text-sm font-medium text-gray-600 transition-all duration-200 cursor-pointer w-full text-left";
-  const linkActive = "bg-gray-200 font-bold";
-  const linkDisabled = "cursor-not-allowed opacity-40 hover:bg-transparent";
+    "flex items-center gap-3 px-5 py-2.5 text-[13px] text-[#394456] transition-all duration-200 cursor-pointer w-full hover:text-[#4B0082] hover:bg-[#ede5f7] hover:rounded-lg hover:border-l-4 hover:border-[#4B0082]";
+  const linkActive = "font-semibold text-[#1e2227]";
+  const linkDisabled =
+    "!cursor-not-allowed hover:!bg-transparent hover:!text-[#394456]";
 
   return (
-    <aside className="w-[250px] min-h-screen bg-[#f9f9fb] border-r border-gray-200 flex flex-col justify-between py-5 sticky top-0 h-screen">
+    <aside className="w-[220px] min-h-screen bg-white border-r border-gray-200 flex flex-col justify-between sticky top-0 h-screen overflow-y-auto">
       <div>
-        <div className="px-5 mb-8">
+        <div className="px-5 py-5 pb-6">
           <img src="/assets/logo-dark.png" alt="HollywoodAI" className="h-9" />
         </div>
-        <div className="flex flex-col">
+
+        <div className="px-5 pb-2">
+          <span className="text-[10px] font-bold text-gray-400 tracking-widest uppercase">
+            Links
+          </span>
+        </div>
+        <div className="flex flex-col gap-0.5">
           <a
-            className={`${linkBase} hover:bg-gray-200 ${pathname === "/dashboard" ? linkActive : ""}`}
+            className={`${linkBase} hover:bg-gray-50 ${pathname === "/dashboard" ? linkActive : ""}`}
             onClick={() => router.push("/dashboard")}
           >
-            <AiOutlineHome size={20} />
+            <BsGrid size={18} />
             Dashboard
           </a>
-
           <a
-            className={`${linkBase} hover:bg-gray-200 ${pathname === "/favourites" ? linkActive : ""}`}
+            className={`${linkBase} hover:bg-gray-50 ${pathname === "/favourites" ? linkActive : ""}`}
             onClick={() => router.push("/favourites")}
           >
-            <AiOutlineHeart size={20} />
+            <BsBookmark size={18} />
             Favourites
           </a>
           <a className={`${linkBase} ${linkDisabled}`}>
-            <AiOutlineSearch size={20} />
+            <AiOutlineSearch size={18} />
             Search
           </a>
           <a className={`${linkBase} ${linkDisabled}`}>
-            <HiOutlineTrendingUp size={20} />
+            <FiTrendingUp size={18} />
             Trending
           </a>
+        </div>
 
-          <a
-            className={`${linkBase} hover:bg-gray-200 ${pathname === "/settings" ? linkActive : ""}`}
-            onClick={() => router.push("/settings")}
-          >
-            <AiOutlineSetting size={20} />
-            Settings
-          </a>
+        <div className="px-5 pt-6 pb-2">
+          <span className="text-[10px] font-bold text-gray-400 tracking-widest uppercase">
+            Extras
+          </span>
+        </div>
+        <div className="flex flex-col gap-0.5">
           <a className={`${linkBase} ${linkDisabled}`}>
-            <AiOutlineQuestionCircle size={20} />
+            <BsQuestionCircle size={18} />
             Help & Support
           </a>
+          <a
+            className={`${linkBase} hover:bg-gray-50 ${pathname === "/settings" ? linkActive : ""}`}
+            onClick={() => router.push("/settings")}
+          >
+            <FiSettings size={18} />
+            Settings
+          </a>
+          {isLoggedIn ? (
+            <a
+              className={`${linkBase} hover:bg-gray-50`}
+              onClick={handleLogout}
+            >
+              <FiLogOut size={18} />
+              Log out
+            </a>
+          ) : (
+            <a className={`${linkBase} hover:bg-gray-50`} onClick={handleLogin}>
+              <FiLogIn size={18} />
+              Login
+            </a>
+          )}
         </div>
-      </div>
-      <div className="border-t border-gray-200 pt-3">
-        {isLoggedIn ? (
-          <a className={`${linkBase} hover:bg-gray-200`} onClick={handleLogout}>
-            <AiOutlineLogout size={20} />
-            Logout
-          </a>
-        ) : (
-          <a className={`${linkBase} hover:bg-gray-200`} onClick={handleLogin}>
-            <AiOutlineLogin size={20} />
-            Login
-          </a>
-        )}
       </div>
     </aside>
   );

@@ -26,7 +26,7 @@ export default function SearchBar() {
       try {
         const res = await fetch(`${API_BASE}/movies?search=${debouncedSearch}`);
         const data = await res.json();
-        setResults(data);
+        setResults(Array.isArray(data) ? data : data.movies || data.data || []);
       } catch (err) {
         console.error(err);
       } finally {
@@ -44,26 +44,28 @@ export default function SearchBar() {
   }
 
   return (
-    <div className="px-6 py-4 border-b border-gray-200 relative">
-      <div className="flex items-center gap-2.5 bg-[#f0f0f3] rounded-lg px-4 py-3">
-        <AiOutlineSearch size={20} className="text-gray-400 flex-shrink-0" />
+    <div className="px-6 py-4 border-b border-gray-100 relative">
+      <div className="flex items-center gap-2.5 bg-[#f1f1f1] rounded-full px-4 py-2.5 max-w-md">
+        <AiOutlineSearch size={24} />
         <input
           type="text"
-          className="border-none bg-transparent outline-none text-sm w-full font-[Onest] text-[#1e2227]"
+          className="border-none bg-transparent outline-none text-sm w-full text-black placeholder-gray-500"
           placeholder="Search for movies..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>
       {search.trim() && (
-        <div className="absolute top-full left-6 right-6 bg-white border border-gray-200 rounded-lg max-h-[400px] overflow-y-auto z-[100] shadow-lg">
+        <div className="absolute top-full left-6 right-6 bg-white border border-gray-200 rounded-lg max-h-[400px] overflow-y-auto z-[100] shadow-lg mt-1">
           {loading ? (
-            <div className="p-5 text-center text-sm text-gray-400">Searching...</div>
+            <div className="p-5 text-center text-sm text-gray-400">
+              Searching...
+            </div>
           ) : results.length > 0 ? (
             results.map((movie) => (
               <div
                 key={movie.id}
-                className="flex items-center gap-3.5 px-4 py-3 cursor-pointer transition-all duration-200 hover:bg-gray-100"
+                className="flex items-center gap-3.5 px-4 py-3 cursor-pointer transition-all duration-200 hover:bg-gray-50"
                 onClick={() => handleClick(movie.id)}
               >
                 <img
@@ -72,13 +74,19 @@ export default function SearchBar() {
                   className="w-[50px] h-[75px] object-cover rounded"
                 />
                 <div className="flex flex-col">
-                  <span className="text-sm font-semibold text-[#1e2227]">{movie.title}</span>
-                  <span className="text-xs text-gray-400">{movie.director}</span>
+                  <span className="text-sm font-semibold text-[#1e2227]">
+                    {movie.title}
+                  </span>
+                  <span className="text-xs text-gray-400">
+                    {movie.director}
+                  </span>
                 </div>
               </div>
             ))
           ) : (
-            <div className="p-5 text-center text-sm text-gray-400">No results found</div>
+            <div className="p-5 text-center text-sm text-gray-400">
+              No results found
+            </div>
           )}
         </div>
       )}

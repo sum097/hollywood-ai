@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/redux/store";
 import { closeModal, switchView } from "@/redux/slices/modalSlice";
-import { setUser } from "@/redux/slices/userSlice";
+import { setSubscription, setUser } from "@/redux/slices/userSlice";
 import {
   registerWithEmail,
   loginWithEmail,
@@ -87,6 +87,7 @@ export default function AuthModal() {
     setLoading(true);
     try {
       const result = await loginAsGuest();
+      dispatch(setSubscription("premium"));
       await handleSuccess(result.user);
     } catch (err: any) {
       setError(getFirebaseErrorMessage(err.code));
@@ -170,7 +171,9 @@ export default function AuthModal() {
         )}
 
         <div className="flex flex-col">
-          <label className="text-sm font-semibold text-[#1e2227] mb-1">Email Address</label>
+          <label className="text-sm font-semibold text-[#1e2227] mb-1">
+            Email Address
+          </label>
           <input
             type="email"
             className="px-3.5 py-3 border border-gray-200 rounded-lg text-sm mb-3 outline-none focus:border-blue-500 font-[Onest]"
@@ -181,7 +184,9 @@ export default function AuthModal() {
 
           {view !== "forgot" && (
             <>
-              <label className="text-sm font-semibold text-[#1e2227] mb-1">Password</label>
+              <label className="text-sm font-semibold text-[#1e2227] mb-1">
+                Password
+              </label>
               <input
                 type="password"
                 className="px-3.5 py-3 border border-gray-200 rounded-lg text-sm mb-3 outline-none focus:border-blue-500 font-[Onest]"
@@ -209,10 +214,10 @@ export default function AuthModal() {
             {loading
               ? "Loading..."
               : view === "signup"
-              ? "Sign Up"
-              : view === "login"
-              ? "Log In"
-              : "Send Instructions"}
+                ? "Sign Up"
+                : view === "login"
+                  ? "Log In"
+                  : "Send Instructions"}
           </button>
         </div>
 
