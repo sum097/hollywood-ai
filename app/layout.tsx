@@ -1,7 +1,7 @@
 import "./globals.css";
-import Script from "next/script";
 import ReduxProvider from "@/redux/provider";
 import AuthModal from "@/components/auth/AuthModal";
+import AuthListener from "@/components/auth/AuthListener";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -18,6 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <ReduxProvider>
+          <AuthListener />
           <AuthModal />
           {children}
         </ReduxProvider>

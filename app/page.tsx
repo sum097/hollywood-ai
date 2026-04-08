@@ -9,7 +9,7 @@ export default function LandingPage() {
   const dispatch = useDispatch();
 
   return (
-    <>
+    <div className="landing">
       {/* Navigation Bar */}
       <nav>
         <a href="#">
@@ -311,6 +311,6 @@ export default function LandingPage() {
           </div>
         </section>
       </footer>
-    </>
+    </div>
   );
 }

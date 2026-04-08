@@ -1,18 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap");
 
-* {
+.landing * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: "Onest", sans-serif;
 }
 
-button {
+.landing button {
   cursor: pointer;
   outline: none;
 }
 
-a {
+.landing a {
   text-decoration: none;
   outline: none;
 }
