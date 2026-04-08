@@ -16,7 +16,9 @@ const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
 export default function TopMovies() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(true);
-  const { isLoggedIn, subscriptionPlan } = useSelector((state: RootState) => state.user);
+  const { isLoggedIn, subscriptionPlan } = useSelector(
+    (state: RootState) => state.user,
+  );
   const isSubscribed = isLoggedIn && subscriptionPlan !== "basic";
 
   useEffect(() => {
@@ -38,7 +40,9 @@ export default function TopMovies() {
     <div className="mb-10">
       <div className="mb-5">
         <h2 className="text-2xl font-bold text-[#1e2227]">Top Movies</h2>
-        <p className="text-sm text-gray-400 mt-1">Enjoy our highest rated films.</p>
+        <p className="text-sm text-gray-400 mt-1">
+          Enjoy our highest rated films.
+        </p>
       </div>
       {loading ? (
         <div className="flex gap-4">
@@ -52,7 +56,8 @@ export default function TopMovies() {
           navigation
           spaceBetween={20}
           slidesPerView="auto"
-          className="pb-4"
+          className="pb-4 pt-4"
+          style={{ overflow: "visible" }}
         >
           {movies.slice(0, 6).map((movie) => (
             <SwiperSlide key={movie.id} style={{ width: "200px" }}>
