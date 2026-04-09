@@ -9,8 +9,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "@/lib/firebase";
 import { doc, setDoc } from "firebase/firestore";
+import { Suspense } from "react";
 
-export default function Settings() {
+function SettingsContent() {
   const { isLoggedIn, email, subscriptionPlan, uid } = useSelector(
     (state: RootState) => state.user,
   );
@@ -134,5 +135,13 @@ export default function Settings() {
         <p className="text-base pb-6 border-b border-gray-200">{email}</p>
       </div>
     </div>
+  );
+}
+
+export default function Settings() {
+  return (
+    <Suspense fallback={<div className="flex justify-center py-16"><div className="w-10 h-10 border-4 border-gray-200 border-t-[#4b0082] rounded-full animate-spin" /></div>}>
+      <SettingsContent />
+    </Suspense>
   );
 }

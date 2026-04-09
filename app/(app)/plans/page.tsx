@@ -12,8 +12,9 @@ import { auth } from "@/lib/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-export default function Plans() {
+function PlansContent() {
   const { isLoggedIn, subscriptionPlan, uid, email } = useSelector(
     (state: RootState) => state.user,
   );
@@ -225,5 +226,13 @@ export default function Plans() {
         ))}
       </div>
     </div>
+  );
+}
+
+export default function Plans() {
+  return (
+    <Suspense fallback={<div className="flex justify-center py-16"><div className="w-10 h-10 border-4 border-gray-200 border-t-[#4b0082] rounded-full animate-spin" /></div>}>
+      <PlansContent />
+    </Suspense>
   );
 }
