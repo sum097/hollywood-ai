@@ -9,32 +9,27 @@ interface MovieCardProps {
   isSubscribed?: boolean;
 }
 
-export default function MovieCard({
-  movie,
-  isSubscribed = false,
-}: MovieCardProps) {
+export default function MovieCard({ movie, isSubscribed = false }: MovieCardProps) {
   const router = useRouter();
 
   return (
     <div
-      className="cursor-pointer transition-all duration-300 hover:scale-[1.03] w-[200px] flex-shrink-0"
+      className="cursor-pointer transition-all duration-300 hover:scale-[1.03] max-w-[200px] mx-auto"
       onClick={() => router.push(`/movie/${movie.id}`)}
     >
-      <div className="relative mb-3 overflow-visible">
+      <div className="relative mb-3">
         <img
           src={movie.imageLink}
           alt={movie.title}
-          className="w-full h-[300px] object-cover rounded-lg"
+          className="w-full h-[260px] object-cover rounded-lg"
         />
         {movie.subscriptionRequired && !isSubscribed && (
-          <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#6b21a8]/80 text-white text-[10px] px-3 py-0.5 rounded-full z-10">
+          <span className="absolute top-2 left-1/2 -translate-x-1/2 bg-[#6b21a8]/80 text-white text-[10px] px-3 py-0.5 rounded-full z-10">
             Premium
           </span>
         )}
       </div>
-      <h3 className="text-sm font-bold text-[#1e2227] leading-tight line-clamp-2">
-        {movie.title}
-      </h3>
+      <h3 className="text-sm font-bold text-[#1e2227] leading-tight line-clamp-2">{movie.title}</h3>
       <p className="text-xs text-gray-400 mt-1">{movie.director}</p>
       <div className="flex items-center gap-3 mt-1.5 text-xs text-gray-400">
         <span className="flex items-center gap-1">
