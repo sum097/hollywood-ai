@@ -45,7 +45,7 @@ export default function SearchBar() {
 
   return (
     <div className="border-b border-gray-100 relative">
-      <div className="max-w-[1200px] mx-auto px-8 py-4 max-[980px]:px-4">
+      <div className="max-w-[1200px] min-[1450px]:mx-auto px-8 py-4 max-[980px]:px-4">
         <div className="flex items-center gap-2.5 bg-[#f1f1f1] rounded-full px-4 py-2.5 max-w-md">
           <AiOutlineSearch size={24} />
           <input
@@ -58,7 +58,7 @@ export default function SearchBar() {
         </div>
         {search.trim() && (
           <div className="absolute left-0 right-0 z-[100] mt-1">
-            <div className="max-w-[1200px] mx-auto px-8 max-[980px]:px-4">
+            <div className="max-w-[1200px] min-[1450px]:mx-auto px-8 max-[980px]:px-4">
               <div className="bg-white border border-gray-200 rounded-lg max-h-[400px] overflow-y-auto shadow-lg max-w-md">
                 {loading ? (
                   <div className="p-5 text-center text-sm text-gray-400">Searching...</div>

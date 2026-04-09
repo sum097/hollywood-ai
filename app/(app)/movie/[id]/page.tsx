@@ -101,7 +101,7 @@ export default function MovieDetails() {
 
   if (loading) {
     return (
-      <div className="max-w-[1200px] mx-auto px-8 py-8 max-[980px]:px-4">
+      <div className="max-w-[1200px] min-[1450px]:mx-auto px-8 py-8 max-[980px]:px-4">
         <div className="flex gap-10 max-[768px]:flex-col animate-pulse">
           <div className="flex-1">
             <div className="h-8 bg-gray-200 rounded w-[250px] mb-4" />
@@ -142,14 +142,14 @@ export default function MovieDetails() {
 
   if (!movie) {
     return (
-      <div className="max-w-[1200px] mx-auto px-8 py-8">
+      <div className="max-w-[1200px] min-[1450px]:mx-auto px-8 py-8">
         <p>Movie not found.</p>
       </div>
     );
   }
 
   return (
-    <div className="max-w-[1200px] mx-auto px-8 py-8 max-[980px]:px-4">
+    <div className="max-w-[1200px] min-[1450px]:mx-auto px-8 py-8 max-[980px]:px-4">
       <div className="flex gap-10 max-[768px]:flex-col">
         {/* Left side - Details */}
         <div className="flex-1">

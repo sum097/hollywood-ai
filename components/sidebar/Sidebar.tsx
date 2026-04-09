@@ -35,7 +35,7 @@ export default function Sidebar() {
     "!cursor-not-allowed hover:!bg-transparent hover:!text-[#394456]";
 
   return (
-    <div className="w-[220px] min-h-screen bg-white border-r border-gray-200 flex flex-col justify-between sticky top-0 h-screen overflow-y-auto">
+    <div className="w-[250px] min-h-screen bg-white border-r border-gray-200 flex flex-col justify-between sticky top-0 h-screen overflow-y-auto">
       <div>
         <div className="px-5 py-5 pb-6">
           <img src="/assets/logo-dark.png" alt="HollywoodAI" className="h-9" />
