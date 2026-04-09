@@ -19,14 +19,14 @@ export default function MovieCard({ movie, isSubscribed = false }: MovieCardProp
       className="cursor-pointer transition-all duration-300 hover:scale-[1.03] max-w-[200px] mx-auto"
       onClick={() => router.push(`/movie/${movie.id}`)}
     >
-      <div className="relative mb-3">
+      <div className="relative mb-3 mt-3">
         <img
           src={movie.imageLink}
           alt={movie.title}
           className="w-full h-[260px] object-cover rounded-lg"
         />
         {movie.subscriptionRequired && !isSubscribed && (
-          <span className="absolute top-2 left-1/2 -translate-x-1/2 bg-[#6b21a8]/80 text-white text-[10px] px-3 py-0.5 rounded-full z-10">
+          <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#6b21a8]/80 text-white text-[10px] px-3 py-0.5 rounded-full z-10">
             Premium
           </span>
         )}
