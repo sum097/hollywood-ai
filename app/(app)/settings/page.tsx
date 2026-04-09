@@ -4,16 +4,19 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/redux/store";
 import { openModal } from "@/redux/slices/modalSlice";
-import { useRouter } from "next/navigation";
+import { setSubscription } from "@/redux/slices/userSlice";
+import { useRouter, useSearchParams } from "next/navigation";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "@/lib/firebase";
+import { auth, db } from "@/lib/firebase";
+import { doc, setDoc } from "firebase/firestore";
 
 export default function Settings() {
-  const { isLoggedIn, email, subscriptionPlan } = useSelector(
+  const { isLoggedIn, email, subscriptionPlan, uid } = useSelector(
     (state: RootState) => state.user,
   );
   const dispatch = useDispatch();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -22,6 +25,33 @@ export default function Settings() {
     });
     return () => unsubscribe();
   }, []);
+
+  useEffect(() => {
+    const sessionId = searchParams.get("session_id");
+    if (sessionId && uid) {
+      async function verifySession() {
+        try {
+          const res = await fetch("/api/verify-session", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ sessionId }),
+          });
+          const data = await res.json();
+          if (data.plan) {
+            await setDoc(doc(db, "users", uid!, "subscription", "status"), {
+              plan: data.plan,
+            });
+            dispatch(setSubscription(data.plan));
+          }
+          // Clear the URL param so it doesn't re-verify
+          router.replace("/settings");
+        } catch (err) {
+          console.error(err);
+        }
+      }
+      verifySession();
+    }
+  }, [searchParams, uid, dispatch, router]);
 
   if (loading) {
     return (
