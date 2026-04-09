@@ -1,3 +1,108 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "@/redux/store";
+import { openModal } from "@/redux/slices/modalSlice";
+import { useRouter } from "next/navigation";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/lib/firebase";
+
 export default function Settings() {
-  return <div>Settings</div>;
+  const { isLoggedIn, email, subscriptionPlan } = useSelector(
+    (state: RootState) => state.user,
+  );
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, () => {
+      setLoading(false);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="max-w-[1200px] min-[1400px]:mx-auto px-6 py-8 max-[980px]:px-4 animate-pulse">
+        <h1 className="text-3xl font-bold text-[#1e2227] mb-8 pb-6 border-b border-gray-200">
+          Settings
+        </h1>
+        <div className="mb-8 pb-6 border-b border-gray-200">
+          <div className="h-5 bg-gray-200 rounded w-[180px] mb-3" />
+          <div className="h-4 bg-gray-200 rounded w-[60px]" />
+        </div>
+        <div className="pb-6 border-b border-gray-200">
+          <div className="h-5 bg-gray-200 rounded w-[180px] mb-3" />
+          <div className="h-4 bg-gray-200 rounded w-[60px]" />
+        </div>
+      </div>
+    );
+  }
+
+  if (!isLoggedIn) {
+    return (
+      <div className="max-w-[1200px] min-[1400px]:mx-auto px-6 py-8 max-[980px]:px-4">
+        <h1 className="text-3xl font-bold text-[#1e2227] mb-8 pb-6 border-b border-gray-200">
+          Settings
+        </h1>
+        <div className="flex flex-col items-center">
+          <img
+            src="/assets/login.webp"
+            alt="Sign in"
+            className="w-[500px] h-auto"
+          />
+          <h2 className="text-2xl font-bold text-[#1e2227] mb-6">
+            Sign in to see your account settings
+          </h2>
+          <button
+            onClick={() => dispatch(openModal("login"))}
+            className="bg-[#4b0082] text-white px-10 py-3.5 rounded-lg text-base font-semibold cursor-pointer hover:bg-[#3a006b] transition-colors w-[200px]"
+          >
+            Login
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  function getPlanDisplay() {
+    switch (subscriptionPlan) {
+      case "premium":
+        return "Premium";
+      case "vip+":
+        return "VIP+";
+      default:
+        return "Basic";
+    }
+  }
+
+  return (
+    <div className="max-w-[1200px] min-[1400px]:mx-auto px-6 py-8 max-[980px]:px-4">
+      <h1 className="text-3xl font-bold text-[#1e2227] mb-8 pb-6 border-b border-gray-200">
+        Settings
+      </h1>
+
+      <div className="mb-8 pb-6 border-b border-gray-200">
+        <h3 className="text-lg font-bold text-[#1e2227] mb-2">
+          Your Subscription Plan
+        </h3>
+        <p className="text-base mb-3">{getPlanDisplay()}</p>
+        {subscriptionPlan === "basic" && (
+          <button
+            onClick={() => router.push("/plans")}
+            className="bg-[#4b0082] text-white px-6 py-2.5 rounded-lg text-sm font-semibold cursor-pointer hover:bg-[#3a006b] transition-colors flex items-center gap-2"
+          >
+            Upgrade ⚡
+          </button>
+        )}
+      </div>
+
+      <div>
+        <h3 className="text-lg font-bold text-[#1e2227] mb-2">Email</h3>
+        <p className="text-base pb-6 border-b border-gray-200">{email}</p>
+      </div>
+    </div>
+  );
 }

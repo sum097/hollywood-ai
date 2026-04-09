@@ -48,7 +48,6 @@ export default function AuthModal() {
   async function handleSuccess(user: any) {
     dispatch(setUser({ uid: user.uid, email: user.email || "" }));
     handleClose();
-    router.push("/dashboard");
   }
 
   async function handleSubmit() {
