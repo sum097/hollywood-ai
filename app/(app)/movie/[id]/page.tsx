@@ -16,6 +16,7 @@ import {
 import { FiCalendar } from "react-icons/fi";
 import { doc, setDoc, deleteDoc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import { useAudioDuration } from "@/lib/useAudioDuration";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -31,6 +32,7 @@ export default function MovieDetails() {
   const [movie, setMovie] = useState<Movie | null>(null);
   const [loading, setLoading] = useState(true);
   const [isFavourited, setIsFavourited] = useState(false);
+  const audioDuration = useAudioDuration(movie?.audioLink);
 
   useEffect(() => {
     async function fetchMovie() {
@@ -98,6 +100,7 @@ export default function MovieDetails() {
       console.error(err);
     }
   }
+  
 
   if (loading) {
     return (
@@ -166,7 +169,7 @@ export default function MovieDetails() {
               </span>
               <span className="flex items-center gap-2">
                 <AiOutlineClockCircle size={16} />
-                --:--
+                {audioDuration}
               </span>
               <span className="flex items-center gap-2">
                 <BsMic size={16} />

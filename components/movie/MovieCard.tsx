@@ -3,6 +3,7 @@
 import { Movie } from "@/types/movie";
 import { useRouter } from "next/navigation";
 import { AiOutlineClockCircle, AiOutlineStar } from "react-icons/ai";
+import { useAudioDuration } from "@/lib/useAudioDuration";
 
 interface MovieCardProps {
   movie: Movie;
@@ -11,6 +12,7 @@ interface MovieCardProps {
 
 export default function MovieCard({ movie, isSubscribed = false }: MovieCardProps) {
   const router = useRouter();
+  const duration = useAudioDuration(movie.audioLink);
 
   return (
     <div
@@ -34,7 +36,7 @@ export default function MovieCard({ movie, isSubscribed = false }: MovieCardProp
       <div className="flex items-center gap-3 mt-1.5 text-xs text-gray-400">
         <span className="flex items-center gap-1">
           <AiOutlineClockCircle size={13} />
-          --:--
+          {duration}
         </span>
         <span className="flex items-center gap-1">
           <AiOutlineStar size={13} />
