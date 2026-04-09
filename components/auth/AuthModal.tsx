@@ -48,6 +48,9 @@ export default function AuthModal() {
   async function handleSuccess(user: any) {
     dispatch(setUser({ uid: user.uid, email: user.email || "" }));
     handleClose();
+    if (window.location.pathname === "/") {
+      router.push("/dashboard");
+    }
   }
 
   async function handleSubmit() {

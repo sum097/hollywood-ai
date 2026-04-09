@@ -29,8 +29,8 @@
 
 /* Navigation Bar */
 
-nav {
-  padding: 18px 30px;
+.landing nav {
+  padding: 18px 32px;
   height: 76px;
   display: flex;
   justify-content: space-between;

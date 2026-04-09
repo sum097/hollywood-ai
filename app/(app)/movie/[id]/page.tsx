@@ -186,7 +186,7 @@ export default function MovieDetails() {
             onClick={handleSummarise}
             className="bg-[#4b0082] text-white px-8 py-3.5 rounded-lg text-base font-semibold cursor-pointer hover:bg-[#3a006b] transition-colors mb-4 flex items-center gap-2 w-[280px] justify-center"
           >
-            Summarise <BsLightningChargeFill size={16} />
+            Summarise <img src="/assets/bolt.svg" alt="" className="cta__button__icon" />
           </button>
 
           <button
