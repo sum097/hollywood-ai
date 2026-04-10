@@ -79,7 +79,7 @@ export default function Favourites() {
             className="w-[500px] h-auto"
           />
           <h2 className="text-2xl font-bold text-[#1e2227] mb-6">
-            Sign in to see your favourites
+            Sign in to see your favourite movies
           </h2>
           <button
             onClick={() => dispatch(openModal("login"))}
