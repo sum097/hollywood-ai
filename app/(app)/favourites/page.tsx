@@ -72,7 +72,12 @@ export default function Favourites() {
         <h1 className="text-3xl font-bold text-[#1e2227] mb-8 pb-6 border-b border-gray-200">
           Favourites
         </h1>
-        <div className="flex flex-col items-center py-12">
+        <div className="flex flex-col items-center">
+          <img
+            src="/assets/login.webp"
+            alt="Sign in"
+            className="w-[500px] h-auto"
+          />
           <h2 className="text-2xl font-bold text-[#1e2227] mb-6">
             Sign in to see your favourites
           </h2>
