@@ -13,15 +13,30 @@ export default function LandingPage() {
       {/* Navigation Bar */}
       <nav>
         <a href="#">
-          <img src="/assets/logo-dark.png" alt="HollywoodAI" className="nav__logo" />
+          <img
+            src="/assets/logo-dark.png"
+            alt="HollywoodAI"
+            className="nav__logo"
+          />
         </a>
         <div className="nav__links">
-          <a href="#" className="nav__link">About</a>
-          <a href="#" className="nav__link">Features</a>
-          <a href="#" className="nav__link">How it works</a>
-          <a href="#" className="nav__link">Privacy policy</a>
+          <a href="#" className="nav__link">
+            About
+          </a>
+          <a href="#" className="nav__link">
+            Features
+          </a>
+          <a href="#" className="nav__link">
+            How it works
+          </a>
+          <a href="#" className="nav__link">
+            Privacy policy
+          </a>
         </div>
-        <button className="nav__button" onClick={() => dispatch(openModal("login"))}>
+        <button
+          className="nav__button"
+          onClick={() => dispatch(openModal("login"))}
+        >
           Sign In
         </button>
       </nav>
@@ -32,21 +47,32 @@ export default function LandingPage() {
           <div className="header__widget">
             <span className="header__widget__title">Meet HollywoodAI</span>
             <span className="header__widget__emoji"> ⏺ </span>
-            <span className="header__widget__description">Unleash the Power of AI</span>
+            <span className="header__widget__description">
+              Unleash the Power of AI
+            </span>
           </div>
           <h1 className="header__title">
             Ultimate AI <br />
-            Summariser
-            <img src="/assets/bolt.svg" alt="" className="header__title__icon" />
+            <span className="header__title__line">
+              Summariser {" "}
+              <img
+                src="/assets/bolt.svg"
+                alt=""
+                className="header__title__icon"
+              />
+            </span>
           </h1>
           <p className="header__paragraph">
-            All-in-one platform to watch your favourite movies in minutes using AI.
+            All-in-one platform to watch your favourite movies in minutes using
+            AI.
           </p>
           <a className="header__button">
             <div className="header__button__iconWrapper">
               <i className="fa-solid fa-play header__button__icon"></i>
             </div>
-            <span className="header__button__text">See how it works &nbsp;</span>
+            <span className="header__button__text">
+              See how it works &nbsp;
+            </span>
           </a>
         </div>
         <svg
@@ -64,11 +90,12 @@ export default function LandingPage() {
 
       {/* Features */}
       <section id="features">
-        <div className="container">
+        <div className="landing__container">
           <div className="row features__row">
             <h1 className="features__title">The future of AI.</h1>
             <div className="features__para">
-              HollywoodAI is designed to help you enjoy high-quality summaries instantly, without breaking a sweat.
+              HollywoodAI is designed to help you enjoy high-quality summaries
+              instantly, without breaking a sweat.
             </div>
             <div className="features__list">
               <div className="feature">
@@ -76,7 +103,9 @@ export default function LandingPage() {
                   <i className="feature__icon fa-solid fa-pen"></i>
                 </div>
                 <div className="feature__text">
-                  <h4 className="feature__text__title">AI Generated Summaries</h4>
+                  <h4 className="feature__text__title">
+                    AI Generated Summaries
+                  </h4>
                   <p className="feature__text__para">
                     Save time with summaries of the world&apos;s best movies.
                   </p>
@@ -109,7 +138,9 @@ export default function LandingPage() {
                   <i className="feature__icon fa-solid fa-mobile"></i>
                 </div>
                 <div className="feature__text">
-                  <h4 className="feature__text__title">Multi Platform Access</h4>
+                  <h4 className="feature__text__title">
+                    Multi Platform Access
+                  </h4>
                   <p className="feature__text__para">
                     Enjoy your favourite movies on any device.
                   </p>
@@ -144,22 +175,33 @@ export default function LandingPage() {
 
       {/* Summary */}
       <section id="summary">
-        <div className="container">
+        <div className="landing__container">
           <div className="row summary__row">
             <div className="summary__text">
               <div className="summary__widget">
-                <span className="summary__widget__title">The future of entertainment</span>
+                <span className="summary__widget__title">
+                  The future of entertainment
+                </span>
                 <span className="summary__widget__emoji"> ⏺ </span>
                 <span className="summary__widget__description">AI</span>
               </div>
               <h2 className="summary__title">Say goodbye to 2 hour movies.</h2>
               <p className="summary__para">
-                HollywoodAI is designed to help you get high-quality summaries of your favourite movies instantly, without breaking a sweat. With our intuitive interface and powerful features, you can easily digest any movie in just minutes instead of hours.
+                HollywoodAI is designed to help you get high-quality summaries
+                of your favourite movies instantly, without breaking a sweat.
+                With our intuitive interface and powerful features, you can
+                easily digest any movie in just minutes instead of hours.
               </p>
             </div>
             <figure className="summary__figure">
-              <img src="/assets/summary.png" alt="" className="summary__figure__img" />
-              <span className="summary__figure__caption1">Search. Summarise. Repeat.</span>
+              <img
+                src="/assets/summary.png"
+                alt=""
+                className="summary__figure__img"
+              />
+              <span className="summary__figure__caption1">
+                Search. Summarise. Repeat.
+              </span>
               <span className="summary__figure__caption2">Powered by AI</span>
             </figure>
           </div>
@@ -168,7 +210,7 @@ export default function LandingPage() {
 
       {/* Steps */}
       <section id="steps">
-        <div className="container">
+        <div className="landing__container">
           <div className="row steps__row">
             <h2 className="steps__title">So, how does it work?</h2>
             <div className="steps__list">
@@ -178,7 +220,8 @@ export default function LandingPage() {
                   <span>1</span>
                 </div>
                 <div className="step__para">
-                  Browse through our wide selection of the world&apos;s most popular movies
+                  Browse through our wide selection of the world&apos;s most
+                  popular movies
                 </div>
               </div>
               <div className="step">
@@ -186,7 +229,8 @@ export default function LandingPage() {
                   <span>2</span>
                 </div>
                 <div className="step__para">
-                  Simply select a movie you&apos;d like to have summarised and let our AI algorithms do the rest.
+                  Simply select a movie you&apos;d like to have summarised and
+                  let our AI algorithms do the rest.
                 </div>
               </div>
               <div className="step">
@@ -194,7 +238,8 @@ export default function LandingPage() {
                   <span>3</span>
                 </div>
                 <div className="step__para">
-                  Take a couple of minutes to read and listen to the summary. And you&apos;re done!
+                  Take a couple of minutes to read and listen to the summary.
+                  And you&apos;re done!
                 </div>
               </div>
             </div>
@@ -204,37 +249,54 @@ export default function LandingPage() {
 
       {/* Testimonials */}
       <section id="testimonials">
-        <div className="container">
+        <div className="landing__container">
           <div className="row testimonials__row">
             <div className="testimonials__widget">
               <span className="testimonials__widget__title">Testimonials</span>
               <span className="testimonials__widget__emoji">⏺</span>
-              <span className="testimonials__widget__description">TrustPilot</span>
+              <span className="testimonials__widget__description">
+                TrustPilot
+              </span>
             </div>
             <h2 className="testimonials__title">What our members say.</h2>
             <div className="testimonials__list">
               <div className="testimonial">
-                <img src="/assets/testimonial-1.png" alt="" className="testimonial__img" />
+                <img
+                  src="/assets/testimonial-1.png"
+                  alt=""
+                  className="testimonial__img"
+                />
                 <span className="testimonial__name">Olivia Chapman</span>
                 <span className="testimonial__occupation">Student</span>
                 <p className="testimonial__para">
-                  &quot;Hollywood AI made big promises and delivered on them! Absolutely cannot live without this tool!&quot;
+                  &quot;Hollywood AI made big promises and delivered on them!
+                  Absolutely cannot live without this tool!&quot;
                 </p>
               </div>
               <div className="testimonial">
-                <img src="/assets/testimonial-2.png" alt="" className="testimonial__img" />
+                <img
+                  src="/assets/testimonial-2.png"
+                  alt=""
+                  className="testimonial__img"
+                />
                 <span className="testimonial__name">Eric Fisherman</span>
                 <span className="testimonial__occupation">Professor</span>
                 <p className="testimonial__para">
-                  &quot;Definitely worth the purchase if you are a busy person who still wants to keep up with the latest movies&quot;
+                  &quot;Definitely worth the purchase if you are a busy person
+                  who still wants to keep up with the latest movies&quot;
                 </p>
               </div>
               <div className="testimonial">
-                <img src="/assets/testimonial-3.png" alt="" className="testimonial__img" />
+                <img
+                  src="/assets/testimonial-3.png"
+                  alt=""
+                  className="testimonial__img"
+                />
                 <span className="testimonial__name">Anisong Silkum</span>
                 <span className="testimonial__occupation">Student</span>
                 <p className="testimonial__para">
-                  &quot;The summaries provide a really great overview of the movies. It&apos;s also very easy to use. 5/5!&quot;
+                  &quot;The summaries provide a really great overview of the
+                  movies. It&apos;s also very easy to use. 5/5!&quot;
                 </p>
               </div>
             </div>
@@ -255,7 +317,7 @@ export default function LandingPage() {
           >
             <path d="M0 85.662C240 29.1253 480 0.857 720 0.857C960 0.857 1200 29.1253 1440 85.662V0H0V85.662Z"></path>
           </svg>
-          <div className="container">
+          <div className="landing__container">
             <div className="row cta__row">
               <p className="cta__widget">
                 <span className="cta__widget__logo">HollywoodAI</span>
@@ -263,11 +325,19 @@ export default function LandingPage() {
               </p>
               <h2 className="cta__title">Start your free trial.</h2>
               <p className="cta__para">
-                Enjoy your favourite movies in minutes by letting AI do the work for you.
+                Enjoy your favourite movies in minutes by letting AI do the work
+                for you.
               </p>
-              <button className="cta__button" onClick={() => dispatch(openModal("signup"))}>
+              <button
+                className="cta__button"
+                onClick={() => dispatch(openModal("signup"))}
+              >
                 <span className="cta__button__text">Join HollywoodAI</span>
-                <img src="/assets/bolt.svg" alt="" className="cta__button__icon" />
+                <img
+                  src="/assets/bolt.svg"
+                  alt=""
+                  className="cta__button__icon"
+                />
               </button>
             </div>
           </div>
@@ -307,7 +377,9 @@ export default function LandingPage() {
                 Subscribe
               </button>
             </div>
-            <span className="copyright__text">2024 Copyright © Hollywood AI</span>
+            <span className="copyright__text">
+              2024 Copyright © Hollywood AI
+            </span>
           </div>
         </section>
       </footer>
