@@ -16,7 +16,7 @@ export default function MovieCard({ movie, isSubscribed = false }: MovieCardProp
 
   return (
     <div
-      className="cursor-pointer transition-all duration-300 hover:scale-[1.03] max-w-[200px] mx-auto"
+      className="cursor-pointer max-w-[200px] mx-auto"
       onClick={() => router.push(`/movie/${movie.id}`)}
     >
       <div className="relative mb-3 mt-3">
