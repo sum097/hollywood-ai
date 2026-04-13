@@ -125,7 +125,7 @@ function SettingsContent() {
             onClick={() => router.push("/plans")}
             className="bg-[#4b0082] text-white px-6 py-2.5 rounded-lg text-sm font-semibold cursor-pointer hover:bg-[#3a006b] transition-colors flex items-center gap-2"
           >
-            Upgrade <img src="/assets/bolt.svg" alt="" className="cta__button__icon" />
+            Upgrade <img src="/assets/bolt.svg" alt="" className="w-5 h-5" />
           </button>
         )}
       </div>
